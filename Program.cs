@@ -11,7 +11,6 @@ namespace Lab1
             MainWindow win = new MainWindow();
             win.Show();
             Application.Run();
-
         }
     }
 }
