@@ -1,6 +1,0 @@
-/home/fiakenel/Документы/Projects/Monodevelop/Lab1/Lab1/obj/x86/Debug/Lab1.csprojAssemblyReference.cache
-/home/fiakenel/Документы/Projects/Monodevelop/Lab1/Lab1/obj/x86/Debug/Lab1.csproj.CoreCompileInputs.cache
-/home/fiakenel/Документы/Projects/Monodevelop/Lab1/Lab1/bin/Debug/Lab1.exe
-/home/fiakenel/Документы/Projects/Monodevelop/Lab1/Lab1/bin/Debug/Lab1.pdb
-/home/fiakenel/Документы/Projects/Monodevelop/Lab1/Lab1/obj/x86/Debug/Lab1.exe
-/home/fiakenel/Документы/Projects/Monodevelop/Lab1/Lab1/obj/x86/Debug/Lab1.pdb
