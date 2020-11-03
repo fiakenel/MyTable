@@ -19,6 +19,7 @@ namespace Lab1
         {
             this.data = data;
             this.CurentCell = CurentCell;
+            CurentCell.IOnCells = new List<MyEntry>();
         }
         private byte GetPriority(string s)
         {
@@ -333,7 +334,6 @@ namespace Lab1
 
         private int CalcRPN(Token[] tokens)
         {
-            CurentCell.IOnCells = new List<MyEntry>();
 
             Stack<Token> stack = new Stack<Token>();
             stack.Push(new Token(TokenType.END, ""));

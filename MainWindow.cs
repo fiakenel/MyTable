@@ -174,7 +174,9 @@ public partial class MainWindow : Window
                     string s = Class26NumSystem.To26(i) + (Rows - 1).ToString();
                     data[s].Text = "";
                     data[s].Expression = "";
+                    data[s].Result = "";
                     UpdateCellsWithRef(data[s]);
+                    DeleteRefsOfCell(data[s]);
                 }
                 DeleteLastRow();
             }
@@ -183,6 +185,29 @@ public partial class MainWindow : Window
             DeleteLastRow();
         table.ShowAll();
     }
+    private void DeleteAllRefsOnCell()
+    {
+
+    }
+    private void DeleteRefsOfCell(MyEntry Ref)// Deleting every ref of this cell
+    {
+        DeleteRefs(Ref, Ref);
+    }
+
+    private void DeleteRefs(MyEntry startRef, MyEntry Ref)
+    {
+        if(Ref.IOnCells != null)
+        {
+            foreach (MyEntry item in Ref.IOnCells)
+            {
+                if (item != startRef)
+                {
+                    item.CellsOnMe.Remove(startRef);
+                    UpdateCells(startRef, item);
+                }
+            }
+        }
+    }
 
     private void DeleteLastRow()
     {
@@ -190,6 +215,7 @@ public partial class MainWindow : Window
         for (uint i = 0; i < Cols; i++)
         {
             string s = Class26NumSystem.To26(i) + (Rows - 1).ToString();
+            DeleteRefsOfCell(data[s]);
             table.Remove(data[s]);
             data.Remove(s);
         }
@@ -232,6 +258,7 @@ public partial class MainWindow : Window
                     string s = Class26NumSystem.To26(Cols - 1) + (i).ToString();
                     data[s].Text = "";
                     data[s].Expression = "";
+                    data[s].Result = "";
                     UpdateCellsWithRef(data[s]);
                 }
                 DeleteLastCol();
@@ -249,6 +276,7 @@ public partial class MainWindow : Window
         for (uint i = 0; i < Rows; i++)
         {
             string s = Class26NumSystem.To26(Cols - 1) + (i).ToString();
+            DeleteRefsOfCell(data[s]);
             table.Remove(data[s]);
             data.Remove(s);
         }
@@ -282,7 +310,7 @@ public partial class MainWindow : Window
         entry.Expression = entry.Text;
         if (entry.IOnCells != null)
         {
-            foreach (var item in entry.IOnCells) //del every ref on this cell 
+            foreach (var item in entry.IOnCells)  
             {
                 item.CellsOnMe.Remove(entry);
             }
@@ -294,6 +322,7 @@ public partial class MainWindow : Window
         }
         else
         {
+            entry.IOnCells = null;
             entry.Result = entry.Text;
         }
         MainEntry.Text = entry.Result;
@@ -319,10 +348,13 @@ public partial class MainWindow : Window
     {
         foreach (MyEntry item in Ref.CellsOnMe)
         {
-            item.Result = new Parser(data, item).Parse(item.Expression.Substring(1));
-            item.Text = item.Result;
+
             if (item != startRef)
+            {
+                item.Result = new Parser(data, item).Parse(item.Expression.Substring(1));
+                item.Text = item.Result;
                 UpdateCells(startRef, item);
+            }
         }
     }
 
