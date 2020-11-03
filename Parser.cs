@@ -280,8 +280,6 @@ namespace Lab1
 
                     case TokenType.OPERATOR:
 
-                        //if (stack.Peek().type == TokenType.END || (stack.Peek().value == "(") && token.value == "-")
-                        //    res.Add(new Token(TokenType.NUM, "0"));
                         while (stack.Peek().type != TokenType.END && GetPriority(token.value) <= GetPriority(stack.Peek().value))
                         {
                             res.Add(stack.Pop());
@@ -347,10 +345,10 @@ namespace Lab1
                     case TokenType.CELL_REF:
                         stack.Push(new Token(TokenType.NUM, data[token.value].Result));
 
-                        if (!data[token.value].CellsOnMe.Contains(CurentCell))
+                        if (!data[token.value].CellsOnMe.Contains(CurentCell) && CurentCell != data[token.value])
                             data[token.value].CellsOnMe.Add(CurentCell);
 
-                        if (!CurentCell.IOnCells.Contains(data[token.value]))
+                        if (!CurentCell.IOnCells.Contains(data[token.value]) && CurentCell != data[token.value])
                             CurentCell.IOnCells.Add(data[token.value]);
 
                         CheckRefRecursion(CurentCell);

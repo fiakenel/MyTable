@@ -27,7 +27,7 @@ public partial class MainWindow : Window
     {
         if(table != null)
             scrolledwindow.Remove(table);
-
+        MainEntry.Text = "";
         data = new Dictionary<string, MyEntry>();
         table = new Table(rows, cols, false);
         scrolledwindow.Add(table);
@@ -307,6 +307,7 @@ public partial class MainWindow : Window
         {
             entry.Text = entry.Result;
         }
+        MainEntry.Text = "";
     }
 
     private void UpdateCellsWithRef(MyEntry Ref)// Parsing every cell that have ref on this cell
@@ -368,8 +369,8 @@ public partial class MainWindow : Window
     protected void InfoActivated(object sender, EventArgs e)
     {
         MessageDialog dialog = new MessageDialog(this, DialogFlags.DestroyWithParent,
-        MessageType.Info, ButtonsType.Ok, "Щоб записати текст в клітинку після введення натисніть на Enter." +
-            "\n Щоб дати команду обробити текст як математичний вираз перед виразом введіть '='." +
+        MessageType.Info, ButtonsType.Ok, "Для запису тексту в клітинку просто введіть текст." +
+            "\nЩоб дати команду обробити текст як математичний вираз перед виразом введіть '=' і натисніть Enter" +
             "\n\n\tДоступні операції/функції:" +
             "\n\t\t +\t\tx+y" +
             "\n\t\t -\t\tx-y" +
